@@ -1,60 +1,52 @@
-# news-image-01 — The World Today: Friday 13 November 2026
+# News Image 01 — Friday 13 November 2026, in one picture
 
-A newspaper front page that sums up the world's news of Friday 13 November
-2026 in one 1024×1024 image. Six illustrated stories in a 2×3 grid, plus a
-footer strip with two more headlines. The program (`main.ts`, Node 22,
-standard library only) copies `entry.png` to `/output/entry.png`.
+## What this entry is
 
-## The stories on the page
+A single 1024x1024 image that sums up the world news of Friday
+13 November 2026. The image is `entry.png` (232,103 bytes). The program
+in `main.ts` does one thing: it copies `entry.png` into the output
+directory the harness asks for (`$MAKEFUN_OUTPUT_DIR`, or `/output` by
+default) and checks the copy is a real, non-empty file under the
+1 MiB limit.
 
-1. **NVIDIA CEO HUANG RESIGNS** — Nvidia co-founder Jensen Huang resigned
-   as CEO and left the board; CFO Colette Kress is interim CEO. The Senate
-   Banking Committee asked Huang and Commerce Secretary Howard Lutnick to
-   testify. Sources: BBC News, CBS News, Al Jazeera (13 Nov 2026).
-2. **EUROPE TO JOIN UKRAINE PEACE TALKS** — US envoys Steve Witkoff and
-   Jared Kushner met Vladimir Putin in Moscow, then Volodymyr Zelensky in
-   Dublin; Europe is to be represented at the next round of talks, and a
-   prisoner exchange described as potentially the war's largest is coming.
-   Sources: BBC News, AP (13 Nov 2026).
-3. **DRONE HITS RUSSIAN WARSHIP** — Ukraine says it struck the Baltic Fleet
-   corvette Naro-Fominsk; Finland's defence forces confirmed they detected
-   a strike on a Russian warship near Gogland in the Gulf of Finland.
-   Sources: BBC News, Al Jazeera, Yle/Reuters (13 Nov 2026).
-4. **IRAN CLAIMS STRIKE ON US RADAR** — Iran's Revolutionary Guard claims
-   it destroyed a US early-warning radar site in Bahrain; the claim could
-   not be independently verified, so the image says "CLAIMS".
-   Sources: Al Jazeera, AP (13 Nov 2026).
-5. **FBI: N. KOREA $400M CRYPTO THEFT** — The FBI/DOJ disrupted
-   "FaceStealer", a North Korean fake-video-call scheme that stole over
-   $400m in crypto, and moved to seize $1.2bn of the $6.3bn Binance hack
-   loot. Sources: US DOJ via Unchained, Cointelegraph, ITWeb (13 Nov 2026).
-6. **MICROSOFT 365 OUTAGE WORLDWIDE** — Outlook, Teams, SharePoint and
-   Copilot went down worldwide from Thursday evening; 120,000+ Outlook
-   problem reports at peak across 74 countries. Microsoft says it was not
-   a cyberattack. Sources: Microsoft 365 Status, Reuters, USA Today
-   (13 Nov 2026).
+## The stories in the picture
 
-Footer strip — **STRIKE HITS GAZA HOSPITAL, 6 KILLED**: an Israeli strike
-on Nasser Hospital in Khan Younis killed six, including a surgeon and a
-child (CNN, AP, 13 Nov 2026); **KANE BREAKS ENGLAND CAPS RECORD**: Harry
-Kane set a new England men's appearance record (Al Jazeera Sport,
-13 Nov 2026).
+Every item below was checked against its source before it went into the
+image. Where a story is only a claim, the image says so — nothing that
+is merely alleged or speculated is presented as an established fact.
 
-## How to run
+1. **Nvidia's chief summoned to Washington.** The US Senate Banking
+   Committee has called Nvidia CEO Jensen Huang and Commerce Secretary
+   Howard Lutnick to testify in December. Sources: BBC, Al Jazeera, DPA.
+2. **Ukraine peace talks move to Dublin.** US envoys Steve Witkoff and
+   Jared Kushner met President Zelensky in Dublin, and European
+   countries are set to join the next round of talks. Sources: BBC,
+   RFE/RL.
+3. **Ukrainian drone hits a Russian warship.** A Ukrainian drone struck
+   a Russian warship in the Gulf of Finland, and Finland confirmed it
+   had detected the strike. Source: BBC.
+4. **Iran says it hit a US radar site — unconfirmed.** Iran claims it
+   struck a US radar installation in Bahrain. This is Iran's claim
+   only: it has not been confirmed, and neither the US nor Bahrain has
+   commented on it. Sources: Al Jazeera, Reuters.
+5. **US cracks down on North Korean crypto theft.** The FBI and the
+   Department of Justice disrupted North Korea's FaceStealer scheme —
+   fake video calls used to steal about $400 million in crypto — and
+   moved to seize $1.2 billion linked to the Binance hack.
+   Sources: BBC, Reuters, US Department of Justice.
+6. **Microsoft 365 goes down worldwide.** A global outage knocked out
+   Outlook, Teams and Copilot in 74 countries. Microsoft said there
+   was no cyberattack behind it. Sources: Reuters, USA Today.
+7. **Strike on Gaza's Nasser Hospital.** A strike on Nasser Hospital in
+   Gaza killed 6 people. Sources: Al Jazeera, Gaza Health Ministry.
+8. **Harry Kane makes England history.** Kane earned his 126th cap,
+   breaking England's all-time appearances record. Source: Reuters.
+
+## How to run it
 
 ```sh
-mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+MAKEFUN_OUTPUT_DIR=out node main.ts
 ```
 
-## Gate check (verified 13 Nov 2026, ~19:50 WIB)
-
-- Output: `entry.png`, 1024×1024, JPEG, **283,950 bytes** (limit 1,048,576)
-- Two runs with `MAKEFUN_OUTPUT_DIR=out` produce byte-identical output
-  (sha256 compared) — deterministic: yes
-- The image was generated fresh for this entry (not the kit starter image);
-  the 1600×1600 source render is kept outside the repo at
-  `/tmp/news-image-01-source/` for reference.
-
-## License
-
-MIT — see `LICENSE`.
+This writes `out/entry.png` — a byte-for-byte copy of `entry.png` —
+and fails loudly if the copy comes out empty or over 1,048,576 bytes.
